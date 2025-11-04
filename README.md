@@ -29,6 +29,7 @@ bundle install
 ```bash
 rails db:create
 rails db:migrate
+rails db:seed  # Opcional: carrega dados de exemplo
 ```
 
 ## Uso
@@ -103,6 +104,25 @@ Execute os testes com:
 rails test
 ```
 
+Ou execute testes específicos:
+
+```bash
+ruby -I test test/models/article_test.rb
+ruby -I test test/controllers/articles_controller_test.rb
+```
+
+## Script de Exemplo
+
+Há um script de exemplo (`example_usage.rb`) que demonstra todas as operações CRUD:
+
+```bash
+# Primeiro, inicie o servidor em um terminal
+rails server
+
+# Em outro terminal, execute o script de exemplo
+ruby example_usage.rb
+```
+
 ## Estrutura do Projeto
 
 ```
@@ -141,9 +161,21 @@ rails test
 ## Tecnologias Utilizadas
 
 - Ruby 3.2
-- Ruby on Rails 7.0
+- Ruby on Rails 7.2
 - SQLite3
 - Puma (servidor web)
+
+## Segurança
+
+⚠️ **Nota Importante**: A configuração CORS atual permite acesso de qualquer origem (`*`). Para uso em produção:
+
+1. Defina origens específicas permitidas no arquivo `config/initializers/cors.rb`
+2. Ou configure a variável de ambiente `ALLOWED_ORIGINS` com os domínios permitidos
+
+Exemplo para produção:
+```ruby
+origins 'https://seusite.com', 'https://www.seusite.com'
+```
 
 ## Licença
 
