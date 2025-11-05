@@ -1,23 +1,26 @@
-# Ignore bundler config.
+# Ignore bundler config
 /.bundle
 /vendor/bundle
 
-# Ignore all logfiles and tempfiles.
+# Ignore all logfiles and tempfiles
 /log/*
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+*.log
 
 # Ignore database files
 /db/*.sqlite3
 /db/*.sqlite3-*
+/db/*.sqlite3-journal
 
-# Ignore uploaded files in development.
+# Ignore uploaded files in development
 /storage/*
 !/storage/.keep
 
-# Ignore master key for decrypting credentials.
+# Ignore master key for decrypting credentials
 /config/master.key
+/config/credentials/*.key
 
 # Ignore node_modules
 /node_modules
@@ -28,3 +31,19 @@
 # Ignore environment variables
 .env
 .env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Ignore bootsnap cache
+/tmp/cache/bootsnap/
+
+# Ignore other temporary files
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Ignore secret files
+/tmp/local_secret.txt

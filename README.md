@@ -25,11 +25,13 @@ cd api-rest-ruby
 bundle install
 ```
 
+**Nota:** Este projeto requer o uso de `bundle exec` antes dos comandos Rails/Rake para garantir que as versões corretas das gems sejam utilizadas.
+
 3. Configure o banco de dados:
 ```bash
-rails db:create
-rails db:migrate
-rails db:seed  # Opcional: carrega dados de exemplo
+bundle exec rake db:create
+bundle exec rake db:migrate
+bundle exec rake db:seed  # Opcional: carrega dados de exemplo
 ```
 
 ## Uso
@@ -37,10 +39,10 @@ rails db:seed  # Opcional: carrega dados de exemplo
 ### Iniciar o servidor
 
 ```bash
-rails server
+bundle exec rackup
 ```
 
-O servidor estará disponível em `http://localhost:3000`
+O servidor estará disponível em `http://localhost:9292`
 
 ### Endpoints da API
 
@@ -164,6 +166,12 @@ ruby example_usage.rb
 - Ruby on Rails 7.2
 - SQLite3
 - Puma (servidor web)
+
+## Persistência de Dados
+
+💾 **Os dados são salvos permanentemente!** 
+
+Todos os artigos criados via POST ficam armazenados no arquivo `db/development.sqlite3` e **não são perdidos** quando a aplicação é fechada. SQLite é um banco de dados real que persiste os dados no disco.
 
 ## Segurança
 
