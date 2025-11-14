@@ -1,16 +1,26 @@
 # api-rest-ruby
 
-API REST em Ruby on Rails com estrutura CRUD completa.
+API REST em Ruby com estrutura CRUD completa + Frontend Vue.js.
 
 ## Sobre
 
-Esta é uma API REST construída com Ruby on Rails que implementa operações CRUD (Create, Read, Update, Delete) para gerenciar artigos.
+Esta é uma API REST construída com Ruby (Rack + ActiveRecord) que implementa operações CRUD (Create, Read, Update, Delete) para gerenciar artigos. O projeto inclui um frontend moderno desenvolvido com Vue.js 3 para interagir com a API.
+
+## 🎯 Características
+
+- ✅ **API REST completa** com operações CRUD
+- 🎨 **Frontend Vue.js 3** moderno e responsivo
+- 📦 **Código modular** (HTML, CSS e JavaScript separados)
+- 💾 **Persistência de dados** com SQLite3
+- 🔄 **CORS configurado** para integração frontend-backend
+- 🧪 **Testes** incluídos
 
 ## Requisitos
 
 - Ruby 3.2.x
 - SQLite3
 - Bundler
+- Navegador web moderno (para o frontend)
 
 ## Instalação
 
@@ -36,7 +46,36 @@ bundle exec rake db:seed  # Opcional: carrega dados de exemplo
 
 ## Uso
 
-### Iniciar o servidor
+### Opção 1: Backend + Frontend (Recomendado)
+
+#### 1. Inicie o servidor backend
+
+```bash
+bundle exec puma
+```
+
+O servidor estará disponível em `http://localhost:3000`
+
+#### 2. Abra o frontend
+
+**Usando servidor HTTP Python (recomendado):**
+```bash
+# Em outro terminal
+cd frontend
+python3 -m http.server 8080
+```
+
+Acesse: `http://localhost:8080`
+
+**Ou abra diretamente no navegador:**
+```bash
+cd frontend
+xdg-open index.html  # Linux
+# ou open index.html (macOS)
+# ou start index.html (Windows)
+```
+
+### Opção 2: Apenas Backend (API)
 
 ```bash
 bundle exec rackup
@@ -129,49 +168,95 @@ ruby example_usage.rb
 
 ```
 .
-├── app/
+├── app/                    # Backend Ruby
 │   ├── controllers/
 │   │   ├── application_controller.rb
 │   │   └── articles_controller.rb
 │   └── models/
 │       ├── application_record.rb
 │       └── article.rb
-├── config/
+├── config/                 # Configurações
 │   ├── application.rb
 │   ├── boot.rb
 │   ├── database.yml
 │   ├── environment.rb
+│   ├── puma.rb
 │   ├── environments/
 │   ├── initializers/
+│   │   └── cors.rb        # Configuração CORS
 │   └── routes.rb
-├── db/
+├── db/                     # Banco de dados
+│   ├── development.sqlite3
 │   └── migrate/
 │       └── 20231101000000_create_articles.rb
-├── test/
+├── frontend/               # Frontend Vue.js ⭐ NOVO
+│   ├── index.html         # Estrutura HTML
+│   ├── css/
+│   │   └── styles.css     # Estilos e animações
+│   ├── js/
+│   │   └── app.js         # Lógica Vue.js
+│   └── README.md          # Documentação do frontend
+├── test/                   # Testes
 │   ├── controllers/
-│   │   └── articles_controller_test.rb
 │   ├── fixtures/
-│   │   └── articles.yml
-│   ├── models/
-│   │   └── article_test.rb
-│   └── test_helper.rb
+│   └── models/
 ├── Gemfile
 ├── Rakefile
-└── config.ru
+├── config.ru
+├── QUICKSTART.md          # Guia rápido
+└── README.md
 ```
 
 ## Tecnologias Utilizadas
 
+### Backend
 - Ruby 3.2
-- Ruby on Rails 7.2
+- Rack
+- ActiveRecord 7.2
 - SQLite3
 - Puma (servidor web)
+
+### Frontend
+- Vue.js 3 (via CDN)
+- CSS3 (Flexbox, Grid, Animations)
+- Fetch API
+- Google Fonts (Poppins)
 
 ## Persistência de Dados
 
 💾 **Os dados são salvos permanentemente!** 
 
 Todos os artigos criados via POST ficam armazenados no arquivo `db/development.sqlite3` e **não são perdidos** quando a aplicação é fechada. SQLite é um banco de dados real que persiste os dados no disco.
+
+## 🎨 Frontend Vue.js
+
+O projeto inclui um frontend completo e moderno desenvolvido com Vue.js 3. Veja mais detalhes em [`frontend/README.md`](frontend/README.md).
+
+### Características do Frontend
+
+- **Design Moderno**: Gradientes, animações e interface responsiva
+- **CRUD Completo**: Criar, listar, editar e deletar artigos
+- **Código Modular**: HTML, CSS e JavaScript em arquivos separados
+- **Sem Build**: Usa Vue.js via CDN (perfeito para estudos)
+- **Integração Direta**: Conecta com a API Ruby via Fetch API
+
+### Quick Start Frontend
+
+```bash
+# Terminal 1: Inicie o backend
+bundle exec puma
+
+# Terminal 2: Inicie o frontend
+cd frontend
+python3 -m http.server 8080
+
+# Acesse: http://localhost:8080
+```
+
+## 📚 Documentação Adicional
+
+- **[QUICKSTART.md](QUICKSTART.md)** - Guia rápido de início (PT/EN)
+- **[frontend/README.md](frontend/README.md)** - Documentação completa do frontend
 
 ## Segurança
 
@@ -185,6 +270,10 @@ Exemplo para produção:
 origins 'https://seusite.com', 'https://www.seusite.com'
 ```
 
-## Licença
+## 🤝 Contribuindo
+
+Este é um projeto educacional. Sinta-se livre para fazer fork, experimentar e aprender!
+
+## 📝 Licença
 
 Este projeto está sob licença MIT.
